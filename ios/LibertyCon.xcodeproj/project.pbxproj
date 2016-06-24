@@ -700,6 +700,7 @@
 				INFOPLIST_FILE = LibertyCon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.con-nexus.app.LibertyCon";
 				PRODUCT_NAME = LibertyCon;
 			};
 			name = Debug;
@@ -717,6 +718,7 @@
 				INFOPLIST_FILE = LibertyCon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.con-nexus.app.LibertyCon";
 				PRODUCT_NAME = LibertyCon;
 			};
 			name = Release;
