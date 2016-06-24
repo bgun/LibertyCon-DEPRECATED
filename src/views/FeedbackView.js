@@ -45,7 +45,7 @@ export default class FeedbackView extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        con_id: 'jcon2016',
+        con_id: 'libertycon',
         subject: this.props.subject,
         text: this.state.text
       })
@@ -86,7 +86,7 @@ FeedbackView.propTypes = {
   subject: React.PropTypes.string.isRequired
 };
 FeedbackView.defaultProps = {
-  subject: "JordanCon 2016"
+  subject: "LibertyCon 2016"
 };
 
 const styles = StyleSheet.create({

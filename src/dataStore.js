@@ -21,7 +21,7 @@ export default {
 
   fetchNews: () => {
     return new Promise((resolve, reject) => {
-      fetch('http://con-nexus.bgun.me/api/news?con_id=jcon2016', fetchOptions)
+      fetch('http://con-nexus.bgun.me/api/news?con_id=libertycon', fetchOptions)
         .then(resp => resp.json())
         .then(data => {
           resolve(data.items);
@@ -36,7 +36,7 @@ export default {
 
   fetchPackageFromNetwork: () => {
     return new Promise((resolve, reject) => {
-      fetch('http://con-nexus.bgun.me/api/con/jcon2016', fetchOptions)
+      fetch('http://con-nexus.bgun.me/api/con/libertycon', fetchOptions)
         .then(resp => resp.json())
         .then(data => {
           resolve(data);
