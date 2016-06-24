@@ -21,6 +21,11 @@ import globalStyles from '../globalStyles';
 
 let aboutText = config.aboutMarkup;
 
+let appText = `
+<p><strong>Con-Nexus</strong> is a lightweight, open-source convention app framework created by Ben Gundersen, and currently built with React Native. You can find more information on <a href="https://github.com/bgun">GitHub</a>, or email me: <a href="mailto:ben@bengundersen.com">ben@bengundersen.com</a>.</p>
+<p><em>Made with &hearts; in New York City</em></p>
+`;
+
 export default class AboutView extends Component {
 
   render() {

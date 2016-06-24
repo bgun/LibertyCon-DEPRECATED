@@ -57,7 +57,6 @@ let styles = StyleSheet.create({
     backgroundColor: globalStyles.COLORS.menuBg,
     flex: 1,
     height: window.height,
-    paddingLeft: window.width/3, // side menu defaults to 2/3 of screen width
     paddingTop: 40
   },
   menuItem: {

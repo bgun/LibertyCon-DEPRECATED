@@ -87,6 +87,8 @@ export default class HotelMapView extends React.Component {
 
 }
 
+let scale = 0.8;
+
 var styles = StyleSheet.create({
   container: {
     backgroundColor: '#BBBBBB',
@@ -95,8 +97,8 @@ var styles = StyleSheet.create({
   map: {
     borderColor: globalStyles.COLORS.border,
     borderWidth: 10,
-    height: (8.25)*120,
+    height: (850)*scale,
     position: 'absolute',
-    width: (5.25)*120
+    width: (1100)*scale
   }
 });

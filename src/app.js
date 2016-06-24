@@ -93,15 +93,12 @@ export default class ConNexusReact extends Component {
         // first time we are running the app, and we have no connection. Bummer.
       }
 
-      //Alert.alert(msg);
-      console.log(msg);
-
       global.makeToast(msg);
 
       // this is awful
       try {
         let test_data = JSON.stringify(con_data);
-        test_data.replace('&#039;','\'');
+        test_data = test_data.replace(/&#039;/g,'\'','g');
         con_data = JSON.parse(test_data);
       } catch(e) {
         console.error("failed", e);
