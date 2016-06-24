@@ -73,7 +73,7 @@ export default class ScheduleView extends Component {
   handleFilterInput(text) {
     if (text.length > 2) {
       let filteredEvents = global.con_data.events.filter(e => {
-        let str = e.title+' '+e.location+' '+e.track;
+        let str = e.title+' '+e.location;
         return str.toLowerCase().indexOf(text.toLowerCase()) > -1;
       });
       this.setState({
