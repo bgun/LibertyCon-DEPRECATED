@@ -4,4 +4,4 @@ import React, {
 
 import ConNexusReact from './src/app';
 
-AppRegistry.registerComponent('jcon2016', () => ConNexusReact);
+AppRegistry.registerComponent('LibertyCon', () => ConNexusReact);
