@@ -1,4 +1,4 @@
-package com.jcon2016;
+package com.libertycon;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactPackage;
@@ -15,7 +15,7 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "jcon2016";
+        return "LibertyCon";
     }
 
     /**
