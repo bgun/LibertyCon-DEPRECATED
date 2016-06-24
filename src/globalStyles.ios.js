@@ -5,10 +5,10 @@ let _borderColor = '#DDDDDD';
 export default {
   COLORS: {
     border: '#DDD',
-    headerBg: '#313b6c',
+    headerBg: '#9A8',
     highlight: '#537',
     highlightDark: '#325',
-    menuBg: '#212b5c',
+    menuBg: '#243',
     sectionHeader: '#958'
   },
   floatingList: {

@@ -14,7 +14,7 @@ let fetchOptions = {
   }
 };
 
-import localData from '../initial_data.js';
+import localData from '../initial_data.json';
 
 
 export default {

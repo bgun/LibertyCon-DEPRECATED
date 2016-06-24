@@ -34,7 +34,6 @@ export default class EventItem extends Component {
           <View style={{ flexDirection: 'row' }}>
             <Text style={ styles.timeText  }>{ formatDate }</Text>
             <Text style={ styles.locationText  }>{ event.location }</Text>
-            <Text style={ styles.trackText  }>{ event.track.toUpperCase() }</Text>
           </View>
         </View>
         { isTodo ? (

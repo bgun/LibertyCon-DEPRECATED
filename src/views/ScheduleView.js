@@ -90,17 +90,6 @@ export default class ScheduleView extends Component {
     }
   }
 
-  componentDidMount() {
-    let now = moment.utc().format();
-    console.log("now", now);
-    let which_index = 0;
-    let which = _.find(global.con_data.events, (event, index) => {
-      which_index = index;
-      return (event.datetime > now);
-    });
-    this.refs.listview.scrollTo({ y: which_index*59, animated: true });
-  }
-
   renderSectionHeader(sectionData, sectionID) {
     return (
       <View style={ styles.section }>

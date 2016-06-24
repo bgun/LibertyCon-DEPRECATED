@@ -16,8 +16,8 @@ class TabIcon extends React.Component {
   render() {
     return (
       <TouchableOpacity style={ styles.tab } onPress={ this.props.onPress }>
-        <Icon name={ this.props.icon } color='#558' size={ this.props.iconSize || 20 } />
-        <Text style={{ color: '#335' }}>{ this.props.text }</Text>
+        <Icon name={ this.props.icon } color='#354' size={ this.props.iconSize || 20 } />
+        <Text style={{ color: '#354' }}>{ this.props.text }</Text>
       </TouchableOpacity>
     );
   }

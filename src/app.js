@@ -98,6 +98,15 @@ export default class ConNexusReact extends Component {
 
       global.makeToast(msg);
 
+      // this is awful
+      try {
+        let test_data = JSON.stringify(con_data);
+        test_data.replace('&#039;','\'');
+        con_data = JSON.parse(test_data);
+      } catch(e) {
+        console.error("failed", e);
+      }
+
       con_data.events = _.sortBy(con_data.events, 'datetime');
       console.log(con_data);
 
