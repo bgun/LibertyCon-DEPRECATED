@@ -12,6 +12,8 @@ import React, {
 
 import { Actions } from 'react-native-router-flux';
 
+import config from '../../con_nexus_config.json';
+
 import globalStyles from '../globalStyles';
 
 import GuestItem from '../components/GuestItem';
@@ -45,7 +47,7 @@ export default class FeedbackView extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        con_id: 'libertycon',
+        con_id: config.con_id,
         subject: this.props.subject,
         text: this.state.text
       })
@@ -86,7 +88,7 @@ FeedbackView.propTypes = {
   subject: React.PropTypes.string.isRequired
 };
 FeedbackView.defaultProps = {
-  subject: "LibertyCon 2016"
+  subject: config.name
 };
 
 const styles = StyleSheet.create({

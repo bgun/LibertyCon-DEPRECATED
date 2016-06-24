@@ -1,4 +1,5 @@
 {
   "con_id": "libertycon",
-  "name": "LibertyCon"
+  "name": "LibertyCon",
+  "aboutMarkup": "<p>LibertyCon is a Science Fiction / Fantasy convention held annually in Chattanooga, TN.</p><p>For more information, read <a href='http://www.libertycon.org/index.php/lc-info-3/about-libertycon'>LibertyCon 101</a>.</p>"
 }
