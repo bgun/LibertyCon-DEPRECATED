@@ -23,6 +23,8 @@ import globalStyles from '../globalStyles';
 
 let window = Dimensions.get('window');
 
+let HEADER_HEIGHT = 84;
+
 let days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 
 export default class ScheduleView extends Component {
@@ -30,45 +32,17 @@ export default class ScheduleView extends Component {
   constructor(props) {
     super();
 
-    var getSectionData = (dataBlob, sectionID) => {
-      return dataBlob[sectionID];
-    };
-
-    var getRowData = (dataBlob, sectionID, rowID) => {
-      return dataBlob[sectionID+':'+rowID];
-    };
-
-    let dataBlob = {};
-    let sectionIDs = [];
-    let rowIDs     = [];
-    let currentDay = null;
-
-    _.forEach(global.con_data.events, (e, index) => {
-      let d = moment(e.datetime).subtract(4, 'hr'); //, "YYYY-MM-DDThh:mm:ss");
-      let day = days[d.day()];
-      if (day !== currentDay) {
-        sectionIDs.push(day);
-        dataBlob[day] = d;
-        rowIDs.push([]);
-        currentDay = day;
-      }
-      let key = e.event_id+'-i'+index;
-      rowIDs[rowIDs.length-1].push(key);
-      dataBlob[day+':'+key] = e;
-    });
-
-    let ds = new ListView.DataSource({
-      getRowData     : getRowData,
-      getSectionData : getSectionData,
-      rowHasChanged           : (r1, r2) => r1 !== r2,
-      sectionHeaderHasChanged : (s1, s2) => s1 !== s2
-    });
-
     this.state = {
-      dataSource: ds.cloneWithRowsAndSections(dataBlob, sectionIDs, rowIDs),
+      dataSource: new ListView.DataSource({
+        rowHasChanged           : (r1, r2) => r1 !== r2,
+      }),
       searchResults: [],
       isSearching: false
     };
+  }
+
+  componentWillMount() {
+    this.refreshDataSource();
   }
 
   handleFilterInput(text) {
@@ -105,12 +79,69 @@ export default class ScheduleView extends Component {
     return <EventItem key={ rowData.event_id } event_id={ rowData.event_id } />;
   }
 
+  refreshDataSource() {
+    let getSectionData = (dataBlob, sectionID) => {
+      return dataBlob[sectionID];
+    };
+
+    let getRowData = (dataBlob, sectionID, rowID) => {
+      return dataBlob[sectionID+':'+rowID];
+    };
+
+    let dataBlob = {};
+    let sectionIDs = [];
+    let rowIDs     = [];
+    let currentDay = null;
+
+    let events = global.con_data.events;
+    let totalEvents = events.length;
+    this.hiddenEventsCount = 0;
+    if (!global.showPastEvents) {
+      let now = Date.now() + (1000*60*60*1.5); // add hours
+      events = global.con_data.events.filter(ev => ev.datetime >= now);
+      this.hiddenEventsCount = totalEvents - events.length;
+    }
+
+    _.forEach(events, (e, index) => {
+      let d = moment(e.datetime).subtract(4, 'hr'); //, "YYYY-MM-DDThh:mm:ss");
+      let day = days[d.day()];
+      if (day !== currentDay) {
+        sectionIDs.push(day);
+        dataBlob[day] = d;
+        rowIDs.push([]);
+        currentDay = day;
+      }
+      let key = e.event_id+'-i'+index;
+      rowIDs[rowIDs.length-1].push(key);
+      dataBlob[day+':'+key] = e;
+    });
+
+    let ds = new ListView.DataSource({
+      getRowData     : getRowData,
+      getSectionData : getSectionData,
+      rowHasChanged           : (r1, r2) => r1 !== r2,
+      sectionHeaderHasChanged : (s1, s2) => s1 !== s2
+    });
+
+    this.setState({
+      dataSource: ds.cloneWithRowsAndSections(dataBlob, sectionIDs, rowIDs)
+    });
+  }
+
+  toggleShowPastEvents() {
+    global.showPastEvents = !global.showPastEvents;
+    this.refreshDataSource();
+  }
+
   render() {
+
+    let switchText = global.showPastEvents ? 'Showing all events' : 'Hiding '+this.hiddenEventsCount+' past events';
+
     return (
       <View style={{ flex: 1 }}>
         { this.state.isSearching ? (
           <View>
-            <View style={[styles.section, { marginTop: 90 }]}><Text style={ styles.sectionText }>SEARCH RESULTS</Text></View>
+            <View style={[styles.section, { marginTop: 40 }]}><Text style={ styles.sectionText }>SEARCH RESULTS</Text></View>
             <ScrollView style={ styles.searchResults }>
               { this.state.searchResults.map(sr => (
                 <EventItem key={ sr.event_id } event_id={ sr.event_id } />
@@ -133,10 +164,12 @@ export default class ScheduleView extends Component {
 
         <View style={ styles.filterContainer }>
           <TextInput placeholder="Search for an event" style={ styles.filterInput } value={ this.state.filterText } onChangeText={ this.handleFilterInput.bind(this) } />
+          { this.state.isSearching ? null : (
           <View style={ styles.switchContainer }>
-            <Switch value={ true } />
-            <Text style={ styles.switchText }>Show past events?</Text>
+            <Switch onTintColor='#334422' value={ global.showPastEvents } onValueChange={ this.toggleShowPastEvents.bind(this) } />
+            <Text style={ styles.switchText }>{ switchText }</Text>
           </View>
+          ) }
         </View>
       </View>
     );
@@ -148,7 +181,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderBottomColor: '#DDDDDD',
     borderBottomWidth: 1,
-    height: 90,
+    height: 40,
     position: 'absolute',
       top: 0,
       left: 0,
@@ -165,18 +198,18 @@ const styles = StyleSheet.create({
   scroll: {
     backgroundColor: '#FFFFFF',
     flex: 1,
-    marginTop: 90
+    marginTop: HEADER_HEIGHT
   },
   searchResults: {
     backgroundColor: '#F8F8F8',
-    height: window.height - 90,
+    height: window.height - HEADER_HEIGHT,
     position: 'absolute',
       left: 0,
     width: window.width
   },
   searchResultsHeader: {
     backgroundColor: globalStyles.COLORS.highlight,
-    marginTop: 90,
+    marginTop: HEADER_HEIGHT,
     paddingHorizontal: 10,
     paddingVertical: 15
   },
@@ -197,7 +230,8 @@ const styles = StyleSheet.create({
   switchContainer: {
     borderColor: '#EEE',
     borderTopWidth: 1,
-    padding: 8,
+    paddingHorizontal: 8,
+    paddingVertical: 6,
     flexDirection: 'row'
   },
   switchText: {

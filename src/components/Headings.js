@@ -21,25 +21,25 @@ let Heading4 = (props) => (
 let styles = StyleSheet.create({
   h1: {
     color: '#444444',
-    fontSize: 32,
+    fontSize: 28,
     marginBottom: 10,
     marginTop: 20
   },
   h2: {
     color: '#444444',
-    fontSize: 24,
+    fontSize: 22,
     marginBottom: 10,
     marginTop: 20
   },
   h3: {
     color: '#666666',
-    fontSize: 20,
+    fontSize: 18,
     marginBottom: 10,
     marginTop: 20
   },
   h4: {
     color: '#888888',
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: 'bold',
     marginBottom: 10,
     marginTop: 20
