@@ -38,6 +38,7 @@ export default {
     backgroundColor: 'red',
     borderRadius: 10,
     height: 10,
+    opacity: 0,
     position: 'absolute',
     top: 10,
     right: 10,

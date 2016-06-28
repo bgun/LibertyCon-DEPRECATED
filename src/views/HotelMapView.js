@@ -87,7 +87,7 @@ export default class HotelMapView extends React.Component {
 
 }
 
-let scale = 0.8;
+let scale = 0.7;
 
 var styles = StyleSheet.create({
   container: {

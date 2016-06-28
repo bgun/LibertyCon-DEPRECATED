@@ -98,7 +98,9 @@ export default class ConNexusReact extends Component {
       // this is awful
       try {
         let test_data = JSON.stringify(con_data);
+        // TODO: this should be removed on the data side
         test_data = test_data.replace(/&#039;/g,'\'','g');
+        test_data = test_data.replace(/&quot;/g,'\'','g');
         con_data = JSON.parse(test_data);
       } catch(e) {
         console.error("failed", e);

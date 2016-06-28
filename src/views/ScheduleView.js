@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderBottomColor: '#DDDDDD',
     borderBottomWidth: 1,
-    height: 40,
+    flexDirection: 'column',
     position: 'absolute',
       top: 0,
       left: 0,
@@ -230,12 +230,15 @@ const styles = StyleSheet.create({
   switchContainer: {
     borderColor: '#EEE',
     borderTopWidth: 1,
+    borderBottomWidth: 1,
     paddingHorizontal: 8,
     paddingVertical: 6,
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   switchText: {
     color: '#888',
-    padding: 8
+    position: 'relative',
+      top: 4,
+      left: 10
   }
 });
