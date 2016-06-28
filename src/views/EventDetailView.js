@@ -30,7 +30,7 @@ export default class EventDetailView extends Component {
       Alert.alert("Event "+event.event_id+" not found!");
       return null;
     }
-    let formatDate = moment.utc(event.datetime).format('dddd h:mma');
+    let formatDate = moment(event.datetime).subtract(4, 'hr').format('dddd h:mma');
     return (
       <ScrollView style={ styles.view }>
         <H1 style={ globalStyles.h1 }>{ event.title }</H1>

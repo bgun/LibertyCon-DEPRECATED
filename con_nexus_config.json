@@ -1,5 +1,9 @@
 {
   "con_id": "libertycon",
   "name": "LibertyCon",
-  "aboutMarkup": "<p>LibertyCon is a Science Fiction / Fantasy convention held annually in Chattanooga, TN.</p><p>For more information, read <a href='http://www.libertycon.org/index.php/lc-info-3/about-libertycon'>LibertyCon 101</a>.</p>"
+  "aboutMarkup": "<p>LibertyCon is a Science Fiction / Fantasy convention held annually in Chattanooga, TN.</p><p>For more information, read <a href='http://www.libertycon.org/index.php/lc-info-3/about-libertycon'>LibertyCon 101</a>.</p>",
+  "hotelName": "The Chattanooga Choo-Choo",
+  "hotelAddress": "1400 Market Street\nChattanooga, TN 37402",
+  "hotelMapLink": "https://www.google.com/maps/place/Chattanooga+Choo+Choo+Hotel/@35.0372848,-85.3090318,17z",
+  "hotelPhone": "18008722529"
 }

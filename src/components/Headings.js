@@ -6,16 +6,16 @@ let { Text, StyleSheet } = React;
 
 
 let Heading1 = (props) => (
-  <Text style={ styles.h1 }>{ props.children }</Text>
+  <Text style={[ props.style, styles.h1 ]}>{ props.children }</Text>
 );
 let Heading2 = (props) => (
-  <Text style={ styles.h2 }>{ props.children }</Text>
+  <Text style={[ props.style, styles.h2 ]}>{ props.children }</Text>
 );
 let Heading3 = (props) => (
-  <Text style={ styles.h3 }>{ props.children }</Text>
+  <Text style={[ props.style, styles.h3 ]}>{ props.children }</Text>
 );
 let Heading4 = (props) => (
-  <Text style={ styles.h4 }>{ props.children }</Text>
+  <Text style={[ props.style, styles.h4 ]}>{ props.children }</Text>
 );
 
 let styles = StyleSheet.create({

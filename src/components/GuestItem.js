@@ -18,7 +18,8 @@ export default class GuestItem extends Component {
   render() {
     let guest = global.con_data.guests.filter(g => (g.guest_id === this.props.guest_id))[0];
     if (!guest) {
-      throw new Error("Guest not found");
+      console.log("Guest not found", this.props);
+      return null;
     }
     return (
       <TouchableOpacity style={[globalStyles.floatingListItem,styles.item]} onPress={ () => Actions.guestDetail({ guest_id: guest.guest_id }) }>

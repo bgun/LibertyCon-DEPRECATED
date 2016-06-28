@@ -3,6 +3,8 @@
 import React, {
   Alert,
   Component,
+  Dimensions,
+  Image,
   ScrollView,
   StyleSheet,
   Text,
@@ -17,6 +19,8 @@ import globalStyles from '../globalStyles';
 
 import EventItem from '../components/EventItem';
 import { H1, H2, H3, H4 } from '../components/Headings';
+
+let window = Dimensions.get('window');
 
 
 class ExpandableText extends React.Component {
@@ -36,7 +40,7 @@ class ExpandableText extends React.Component {
   }
   render() {
     return (
-      <View style={{ flex: 1, flexDirection: 'column' }}>
+      <View style={[this.props.style, { flex: 1, flexDirection: 'column' }]}>
         { this.props.text && this.props.text.length >= this.props.max ? (
           <View>
             { this.state.showMore ? (
@@ -81,9 +85,12 @@ export default class GuestDetailView extends Component {
 
     return (
       <ScrollView style={ styles.view }>
-        <H1>{ guest.name }</H1>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <H1 style={{ top: -20, alignSelf: 'flex-start', alignItems: 'flex-start', width: window.width - 140 }}>{ guest.name }</H1>
+          <Image style={ styles.image } source={{ uri: 'http://www.libertycon.org/images/pros/'+guest.image }} />
+        </View>
 
-        <ExpandableText text={ guest.bio } />
+        <ExpandableText style={{ marginTop: 10 }} text={ guest.bio } />
 
         <H4>Itinerary</H4>
         <View style={[styles.list, globalStyles.floatingList]}>
@@ -105,5 +112,13 @@ const styles = StyleSheet.create({
   },
   list: {
     marginBottom: 50
+  },
+  image: {
+    alignItems: 'flex-start',
+    alignSelf: 'flex-start',
+    borderWidth: 1,
+    borderColor: '#DDD',
+    height: 90,
+    width: 90
   }
 });

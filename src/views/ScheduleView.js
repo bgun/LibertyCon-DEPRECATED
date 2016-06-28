@@ -9,6 +9,7 @@ let {
   ListView,
   ScrollView,
   StyleSheet,
+  Switch,
   Text,
   TextInput,
   View
@@ -43,7 +44,7 @@ export default class ScheduleView extends Component {
     let currentDay = null;
 
     _.forEach(global.con_data.events, (e, index) => {
-      let d = moment.utc(e.datetime); //, "YYYY-MM-DDThh:mm:ss");
+      let d = moment(e.datetime).subtract(4, 'hr'); //, "YYYY-MM-DDThh:mm:ss");
       let day = days[d.day()];
       if (day !== currentDay) {
         sectionIDs.push(day);
@@ -109,7 +110,7 @@ export default class ScheduleView extends Component {
       <View style={{ flex: 1 }}>
         { this.state.isSearching ? (
           <View>
-            <View style={[styles.section, { marginTop: 39 }]}><Text style={ styles.sectionText }>SEARCH RESULTS</Text></View>
+            <View style={[styles.section, { marginTop: 90 }]}><Text style={ styles.sectionText }>SEARCH RESULTS</Text></View>
             <ScrollView style={ styles.searchResults }>
               { this.state.searchResults.map(sr => (
                 <EventItem key={ sr.event_id } event_id={ sr.event_id } />
@@ -132,6 +133,10 @@ export default class ScheduleView extends Component {
 
         <View style={ styles.filterContainer }>
           <TextInput placeholder="Search for an event" style={ styles.filterInput } value={ this.state.filterText } onChangeText={ this.handleFilterInput.bind(this) } />
+          <View style={ styles.switchContainer }>
+            <Switch value={ true } />
+            <Text style={ styles.switchText }>Show past events?</Text>
+          </View>
         </View>
       </View>
     );
@@ -143,8 +148,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderBottomColor: '#DDDDDD',
     borderBottomWidth: 1,
-    height: 40,
-    paddingHorizontal: 10,
+    height: 90,
     position: 'absolute',
       top: 0,
       left: 0,
@@ -152,7 +156,8 @@ const styles = StyleSheet.create({
   },
   filterInput: {
     fontSize: 15,
-    height: 40
+    height: 40,
+    paddingHorizontal: 10
   },
   noResults: {
     padding: 10
@@ -160,18 +165,18 @@ const styles = StyleSheet.create({
   scroll: {
     backgroundColor: '#FFFFFF',
     flex: 1,
-    marginTop: 39
+    marginTop: 90
   },
   searchResults: {
     backgroundColor: '#F8F8F8',
-    height: window.height - 40,
+    height: window.height - 90,
     position: 'absolute',
       left: 0,
     width: window.width
   },
   searchResultsHeader: {
     backgroundColor: globalStyles.COLORS.highlight,
-    marginTop: 39,
+    marginTop: 90,
     paddingHorizontal: 10,
     paddingVertical: 15
   },
@@ -188,5 +193,15 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 'bold',
     opacity: 0.85
+  },
+  switchContainer: {
+    borderColor: '#EEE',
+    borderTopWidth: 1,
+    padding: 8,
+    flexDirection: 'row'
+  },
+  switchText: {
+    color: '#888',
+    padding: 8
   }
 });

@@ -14,10 +14,24 @@ import { Actions } from 'react-native-router-flux';
 
 import HtmlView from 'react-native-htmlview';
 
+import config from '../../con_nexus_config.json';
+
 import { H1, H2, H3, H4 } from '../components/Headings';
 
 import globalStyles from '../globalStyles';
 import ExternalLink from '../components/ExternalLink';
+
+
+let formatPhone = (num) => {
+  if (num.length === 11) {
+    // 1-800-555-1234
+    return [num.slice(0,1), num.slice(1,4), num.slice(4,7), num.slice(7)].join('-');
+  } else if (num.length === 10) {
+    // 555-555-1234
+    return [num.slice(0,3), num.slice(3,6), num.slice(6)].join('-');
+  }
+};
+
 
 
 export default class AboutView extends Component {
@@ -36,15 +50,14 @@ export default class AboutView extends Component {
           <H3>Hotel Info</H3>
         </View>
         <View style={ styles.btn }>
-          <ExternalLink url="https://www.google.com/maps/place/Atlanta+Marriott+Perimeter+Center/@33.9176679,-84.3465655,17z">
-            <Text style={[ styles.address, { fontWeight: 'bold' }]}>Atlanta Marriott Perimeter Center</Text>
-            <Text style={ styles.address }>246 Perimeter Center Pkwy NE</Text>
-            <Text style={ styles.address }>Atlanta, GA 30346</Text>
+          <ExternalLink url={ config.hotelMapLink }>
+            <Text style={[ styles.address, { fontWeight: 'bold' }]}>{ config.hotelName }</Text>
+            <Text style={ styles.address }>{ config.hotelAddress }</Text>
           </ExternalLink>
         </View>
         <View style={ styles.btn }>
-          <ExternalLink url="tel://7703946500">
-            <Text style={ styles.phone }>(770) 394-6500</Text>
+          <ExternalLink url={ "tel://"+config.hotelPhone }>
+            <Text style={ styles.phone }>{ formatPhone(config.hotelPhone) }</Text>
           </ExternalLink>
         </View>
       </ScrollView>

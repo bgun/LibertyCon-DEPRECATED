@@ -26,7 +26,7 @@ export default class EventItem extends Component {
       throw new Error("Event not found!");
     }
     let isTodo = global.todos.has(event.event_id);
-    let formatDate = moment.utc(event.datetime).format('dddd h:mma');
+    let formatDate = moment(event.datetime).subtract(4, 'hr').format('dddd h:mma');
     return (
       <TouchableOpacity style={[globalStyles.floatingListItem, styles.item]} onPress={ () => Actions.eventDetail({ event_id: event.event_id }) }>
         <View style={{ flex: 1 }}>
