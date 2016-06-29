@@ -81,13 +81,21 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.libertycon"
+        applicationId "com.connexus.app.libertycon2"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 1
-        versionName "1.0"
+        versionCode 30000
+        versionName "3.0.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
+        }
+    }
+    signingConfigs {
+        release {
+            storeFile file(CONNEXUS_RELEASE_STORE_FILE)
+            storePassword CONNEXUS_RELEASE_STORE_PASSWORD
+            keyAlias CONNEXUS_RELEASE_KEY_ALIAS
+            keyPassword CONNEXUS_RELEASE_KEY_PASSWORD
         }
     }
     splits {
@@ -100,6 +108,7 @@ android {
     }
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
