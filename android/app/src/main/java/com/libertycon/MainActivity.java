@@ -1,4 +1,4 @@
-package com.libertycon;
+package com.connexus.app.libertycon2;
 
 import com.facebook.react.ReactActivity;
 import com.oblador.vectoricons.VectorIconsPackage;

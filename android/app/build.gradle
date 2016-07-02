@@ -84,8 +84,8 @@ android {
         applicationId "com.connexus.app.libertycon2"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 30000
-        versionName "3.0.0"
+        versionCode 30001
+        versionName "3.0.1"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }

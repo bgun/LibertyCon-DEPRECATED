@@ -36,6 +36,7 @@ export default class EventDetailView extends Component {
         <H1 style={ globalStyles.h1 }>{ event.title }</H1>
         <Text style={ styles.timeText  }>{ formatDate }</Text>
         <Text style={ styles.locationText  }>{ event.location }</Text>
+        <Text style={ styles.durationText  }>{ event.duration }min</Text>
         <HtmlView value={ event.description } />
         <H4>Guests</H4>
         <View style={[styles.list, globalStyles.floatingList]}>
@@ -66,9 +67,14 @@ const styles = StyleSheet.create({
     fontSize: 15
   },
   locationText: {
-    color: '#77F',
+    color: '#D77',
     fontSize: 15,
     fontWeight: 'bold',
+    marginBottom: 10
+  },
+  durationText: {
+    color: '#464',
+    fontSize: 14,
     marginBottom: 10
   }
 });

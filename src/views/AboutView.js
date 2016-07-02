@@ -3,6 +3,7 @@
 import React, {
   Alert,
   Component,
+  Linking,
   ScrollView,
   StyleSheet,
   Text,
@@ -28,17 +29,21 @@ let appText = `
 
 export default class AboutView extends Component {
 
+  onLinkPress(url) {
+    Linking.openURL(url).catch(err => console.error("Error opening link:",err));
+  }
+
   render() {
     return (
       <ScrollView style={ styles.view }>
         <H1>About { config.name }</H1>
-        <HtmlView value={ aboutText } />
+        <HtmlView value={ aboutText } onLinkPress={ this.onLinkPress.bind(this) } />
 
         <View style={{ borderTopColor: globalStyles.COLORS.border, borderTopWidth: 1, marginTop: 20 }} />
 
         <H3>About This App</H3>
 
-        <HtmlView value={ appText } />
+        <HtmlView value={ appText } onLinkPress={ this.onLinkPress.bind(this)} />
       </ScrollView>
     );
   }
