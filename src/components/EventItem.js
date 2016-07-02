@@ -34,6 +34,7 @@ export default class EventItem extends Component {
           <View style={{ flexDirection: 'row' }}>
             <Text style={ styles.timeText  }>{ formatDate }</Text>
             <Text style={ styles.locationText  }>{ event.location }</Text>
+            <Text style={ styles.durationText  }>{ event.duration } min</Text>
           </View>
         </View>
         { isTodo ? (
@@ -63,6 +64,11 @@ const styles = StyleSheet.create({
   locationText: {
     color: '#77F',
     fontSize: 13,
+    marginLeft: 10
+  },
+  durationText: {
+    color: '#5A5',
+    fontSize: 14,
     marginLeft: 10
   },
   trackText: {
