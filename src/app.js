@@ -60,6 +60,7 @@ export default class ConNexusReact extends Component {
     BackAndroid.addEventListener('hardwareBackPress', function() {
       let back = Actions.pop();
       if (back === false) {
+        // stack is empty so exit the app
         BackAndroid.exitApp();
       }
       return true;
