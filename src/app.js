@@ -58,7 +58,10 @@ export default class ConNexusReact extends Component {
     let msg = "Could not get convention data";
 
     BackAndroid.addEventListener('hardwareBackPress', function() {
-      Actions.pop();
+      let back = Actions.pop();
+      if (back === false) {
+        BackAndroid.exitApp();
+      }
       return true;
     });
 
