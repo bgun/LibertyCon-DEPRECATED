@@ -97,7 +97,7 @@ export default class ScheduleView extends Component {
     let totalEvents = events.length;
     this.hiddenEventsCount = 0;
     if (!global.showPastEvents) {
-      let now = Date.now() + (1000*60*60*1.5); // add hours
+      let now = Date.now() - (1000*60*60*1.5); // add hours
       events = global.con_data.events.filter(ev => ev.datetime >= now);
       this.hiddenEventsCount = totalEvents - events.length;
     }
